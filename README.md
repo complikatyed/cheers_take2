@@ -15,7 +15,7 @@ The program will print out:
 
 > I would wish you a Happy Birthday, if I knew when that was!
 
-> Try again with './cheers.rb [Name] [MM/DD Birthday]'
+> Try again with `./cheers [Name] [MM/DD Birthday]`
 
 
 ### Regular Usage
@@ -48,7 +48,7 @@ If no name input is given, the program will print out:
 
 > I'd cheer for you, if only I knew who you were :-(
 
-> Try again with './cheers.rb [Name] [MM/DD Birthday]'
+> Try again with `./cheers [Name] [MM/DD Birthday]`
 
 After printing out the user's cheer, the program outputs  the number of
 days until the user's birthday:
