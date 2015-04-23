@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-def exit_with_help_message
+def exit_with_name_help_message
   puts <<EOS
 I'd cheer for you, if only I knew who you are :(
 Try again with `./cheers [Name] [MM/DD Birthday]
@@ -8,20 +8,32 @@ EOS
   exit
 end
 
-exit_with_help_message if ARGV.empty?
+def exit_with_date_help_message
+  puts <<EOS
+I would wish you a Happy Birthday if I knew when it was.
+EOS
+  exit
+end
+
+
+exit_with_name_help_message if ARGV.empty?
 
 original_name = ARGV[0]
 cheerable_name = original_name.upcase.gsub(/[^A-Z]/, "")
 
-exit_with_help_message if cheerable_name.empty?
+exit_with_name_help_message if cheerable_name.empty?
+
+month_day = ARGV[1]
+d1 = Date.parse("2015/#{month_day}")
+d2 = Date.today
+difference = d1 - d2
+days_left = (difference % 365).numerator
+
 
 cheerable_name.each_char do |char|
   article = "n" if "AEFHILMNORSX".include? char
   puts "Give me a#{article}... #{char}"
 end
 puts "#{original_name}’s just GRAND!"
-puts ""
-puts "I would wish you a Happy Birthday if I knew when that is."
-
-
+puts "\nAwesome!  Your birthday is #{days_left} days away!  Happy Birthday in advance!"
 

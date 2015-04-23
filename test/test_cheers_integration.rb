@@ -22,8 +22,6 @@ Give me an... I
 Give me a... Z
 Give me an... A
 Eliza’s just GRAND!
-
-I would wish you a Happy Birthday if I knew when that is.
 EOS
     assert_equal expected, output
   end
@@ -68,7 +66,7 @@ Give me a... Z
 Give me an... A
 Eliza’s just GRAND!
 
-Awesome!  Your birthday is 127 days away!  Happy Birthday in advance!
+Awesome!  Your birthday is 125 days away!  Happy Birthday in advance!
 EOS
     assert_equal expected, output
   end
@@ -102,8 +100,8 @@ EOS
   end
 
 
-  def test_name_with_hyphen_
-    output = `./cheers Mary-Ann 08/25 `
+  def test_name_with_hyphen_and_valid_birthday
+    output = `./cheers Mary-Ann 08/25`
     expected = <<EOS
 Give me an... M
 Give me an... A
@@ -112,10 +110,9 @@ Give me a... Y
 Give me an... A
 Give me an... N
 Give me an... N
-
 Mary-Ann’s just GRAND!
 
-Awesome!  Your birthday is 127 days away!  Happy Birthday in advance!
+Awesome!  Your birthday is 125 days away!  Happy Birthday in advance!
 EOS
     assert_equal expected, output
   end
