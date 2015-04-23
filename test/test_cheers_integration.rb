@@ -3,7 +3,7 @@ require_relative 'helper'
 class TestCheersIntegration <Minitest::Test
 
 
-  def test_error_message
+  def test_name_help_message
     output = `./cheers`
     expected = <<EOS
 I'd cheer for you, if only I knew who you are :(
@@ -30,8 +30,7 @@ EOS
   def test_valid_name_invalid_birthday
     output = `./cheers Eliza 19/05`
     expected = <<EOS
-I'd cheer for you, if only I knew who you are :(
-Try again with `./cheers [Name] [MM/DD Birthday]
+I would wish you a Happy Birthday if I knew when it was.
 EOS
     assert_equal expected, output
   end
@@ -46,7 +45,7 @@ EOS
   end
 
 
-  def test_invalid_name_valid_birthday # Failing  (as it should be)
+  def test_invalid_name_valid_birthday
     output = `./cheers *#?@ 08/25`
     expected = <<EOS
 I'd cheer for you, if only I knew who you are :(
@@ -129,9 +128,15 @@ EOS
 
   def test_valid_name_invalid_birthday  # Failing (as it should be)
     output = `./cheers Eliza 08/15/2015`
-    expected = <<EOS
-I'd cheer for you, if only I knew who you are :(
-Try again with `./cheers [Name] [MM/DD Birthday]
+    expected =  <<EOS
+Give me an... E
+Give me an... L
+Give me an... I
+Give me a... Z
+Give me an... A
+Eliza’s just GRAND!
+
+I would wish you a Happy Birthday if I knew when it was.
 EOS
     assert_equal expected, output
   end
