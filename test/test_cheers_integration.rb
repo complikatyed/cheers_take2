@@ -7,7 +7,7 @@ class TestCheersIntegration <Minitest::Test
     output = `./cheers`
     expected = <<EOS
 I'd cheer for you, if only I knew who you are :(
-Try again with `./cheers [Name] [MM/DD Birthday]`
+Try again with `./cheers [Name] [MM/DD Birthday]
 EOS
     assert_equal expected, output
   end
@@ -19,9 +19,11 @@ EOS
 Give me an... E
 Give me an... L
 Give me an... I
-Give me a...  Z
+Give me a... Z
 Give me an... A
 Eliza’s just GRAND!
+
+I would wish you a Happy Birthday if I knew when that is.
 EOS
     assert_equal expected, output
   end
@@ -31,17 +33,16 @@ EOS
     output = `./cheers Eliza 19/05`
     expected = <<EOS
 I'd cheer for you, if only I knew who you are :(
-Try again with `./cheers [Name] [MM/DD Birthday]`
+Try again with `./cheers [Name] [MM/DD Birthday]
 EOS
     assert_equal expected, output
   end
-  
 
   def test_invalid_name_only
     output = `./cheers *#?@ `
     expected = <<EOS
 I'd cheer for you, if only I knew who you are :(
-Try again with `./cheers [Name] [MM/DD Birthday]`
+Try again with `./cheers [Name] [MM/DD Birthday]
 EOS
     assert_equal expected, output
   end
@@ -51,19 +52,19 @@ EOS
     output = `./cheers *#?@ 08/25`
     expected = <<EOS
 I'd cheer for you, if only I knew who you are :(
-Try again with `./cheers [Name] [MM/DD Birthday]`
+Try again with `./cheers [Name] [MM/DD Birthday]
 EOS
     assert_equal expected, output
   end
 
 
-  def test_two_valid_arguments   # Failing (as it should be)
+  def test_two_valid_arguments
     output = `./cheers Eliza 08/25`
     expected = <<EOS
 Give me an... E
 Give me an... L
 Give me an... I
-Give me a...  Z
+Give me a... Z
 Give me an... A
 Eliza’s just GRAND!
 
@@ -77,7 +78,7 @@ EOS
     output = `./cheers 12345 25/08 `
     expected = <<EOS
 I'd cheer for you, if only I knew who you are :(
-Try again with `./cheers [Name] [MM/DD Birthday]`
+Try again with `./cheers [Name] [MM/DD Birthday]
 EOS
     assert_equal expected, output
   end
@@ -86,7 +87,7 @@ EOS
     output = `./cheers "" `
     expected = <<EOS
 I'd cheer for you, if only I knew who you are :(
-Try again with `./cheers [Name] [MM/DD Birthday]`
+Try again with `./cheers [Name] [MM/DD Birthday]
 EOS
     assert_equal expected, output
   end
@@ -95,7 +96,7 @@ EOS
     output = `./cheers "" `
     expected = <<EOS
 I'd cheer for you, if only I knew who you are :(
-Try again with `./cheers [Name] [MM/DD Birthday]`
+Try again with `./cheers [Name] [MM/DD Birthday]
 EOS
     assert_equal expected, output
   end
@@ -107,7 +108,7 @@ EOS
 Give me an... M
 Give me an... A
 Give me an... R
-Give me a...  Y
+Give me a... Y
 Give me an... A
 Give me an... N
 Give me an... N
@@ -124,7 +125,7 @@ EOS
     output = `./cheers "  " `
     expected = <<EOS
 I'd cheer for you, if only I knew who you are :(
-Try again with `./cheers [Name] [MM/DD Birthday]`
+Try again with `./cheers [Name] [MM/DD Birthday]
 EOS
     assert_equal expected, output
   end
@@ -133,44 +134,9 @@ EOS
     output = `./cheers Eliza 08/15/2015`
     expected = <<EOS
 I'd cheer for you, if only I knew who you are :(
-Try again with `./cheers [Name] [MM/DD Birthday]`
+Try again with `./cheers [Name] [MM/DD Birthday]
 EOS
     assert_equal expected, output
   end
-
-  # NEED BIRTHDAY NEXT YEAR CALCULATION
-  #
-  # NEED BIRTHDAY THIS YEAR CALCULATION
-  #
-
-
-  # Scenarios discussed in class:
-  # 0 args -> help message -- DONE
-  # 1 valid arg -- DONE
-  # 1 invalid arg -- DONE
-  # 2 args
-  #   * valid + valid -- DONE
-  #   * valid + valid in wrong order -- DONE
-  #   * valid + invalid  -- DONE
-  #   * invalid + valid -- DONE
-  #   * invalid + invalid -- DONE
-  #
-  # Valid Names:
-  #    * Regular name  -- DONE
-  #    * Name with hyphens -- DONE
-  # Invalid Names:
-  #   * birthday instead of name -- DONE
-  #   * all non-word characters -- DONE
-  #   * "" (empty string) -- DONE
-  #   * "  " (whitespace) -- DONE
-  # Valid Months:
-  #   * m/dd (8/25)  -- DONE
-  #   * mm/dd (08/25) -- DONE
-  #   * birthdays that already happened this year
-  #   * birthdays that haven't happened yet this year
-  # Invalid Months:
-  #   * dd/mm (25/08) -- DONE
-  #   * dd/mm/yy (08/25/2015) -- DONE
-
 
 end
