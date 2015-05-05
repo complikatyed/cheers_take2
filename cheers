@@ -8,32 +8,19 @@ EOS
   exit
 end
 
-
 def exit_with_date_help_message
-  puts "I would wish you a Happy Birthday if I knew when it was."
+  puts "I would also wish you a Happy Birthday if I knew when it was."
   exit
 end
 
-
-exit_with_name_help_message if ARGV.empty?
-
-
 original_name = ARGV[0]
+month_day = ARGV[1]
+
+exit_with_name_help_message if ARGV.empty? 
+
 cheerable_name = original_name.upcase.gsub(/[^A-Z]/, "")
 
-
 exit_with_name_help_message if cheerable_name.empty?
-
-
-month_day = ARGV[1]
-d1 = Date.parse("2015/#{month_day}")
-d2 = Date.today
-difference = d1 - d2
-days_left = (difference % 365).numerator
-
-
-month = month_day[0..1]
-day   = month_day[3..4]
 
 
 cheerable_name.each_char do |char|
@@ -42,5 +29,16 @@ cheerable_name.each_char do |char|
 end
 puts "#{original_name}’s just GRAND!"
 puts ""
+
+month = month_day[0..1].to_i
+day = month_day[3..4].to_i
+
+exit_with_date_help_message if ARGV[1].empty? || month === "" or day === "" || month > 12 or day > 31
+
+d1 = Date.parse("2015/#{month_day}")
+d2 = Date.today
+difference = d1 - d2
+days_left = (difference % 365).numerator
+
 puts "Awesome!  Your birthday is #{days_left} days away!  Happy Birthday in advance!"
 
