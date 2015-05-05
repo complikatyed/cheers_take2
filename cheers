@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require 'date'
+
 def exit_with_name_help_message
   puts <<EOS
 I'd cheer for you, if only I knew who you are :(
